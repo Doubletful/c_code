@@ -1,7 +1,7 @@
 //LeetCode    1365.有多少小于当前数字的数字
 
 /*
-//方法一
+//方法一：排序
 //传入的指针为data数组的无类型指针
 int cmp(const void* a, const void* b) {
     //需要先转化为int**(原数组指针)后解引用找到元素(int*)后再访问指针指向空间的第一个值
@@ -40,7 +40,7 @@ int* smallerNumbersThanCurrent(int* nums, int numsSize, int* returnSize) {
     return ret;
 }
 
-//方法二
+//方法二：哈希总和统计
 int* smallerNumbersThanCurrent(int* nums, int numsSize, int* returnSize) {
     int* ans = calloc(numsSize, sizeof(int));
     *returnSize = numsSize;
