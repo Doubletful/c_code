@@ -40,7 +40,7 @@ int* smallerNumbersThanCurrent(int* nums, int numsSize, int* returnSize) {
     return ret;
 }
 
-//方法二：哈希总和统计
+//方法二：哈希累加总和统计
 int* smallerNumbersThanCurrent(int* nums, int numsSize, int* returnSize) {
     int* ans = calloc(numsSize, sizeof(int));
     *returnSize = numsSize;
@@ -59,6 +59,27 @@ int* smallerNumbersThanCurrent(int* nums, int numsSize, int* returnSize) {
     for (int i = 0; i < numsSize; i++)
     {
         ans[i] = nums[i] == 0 ? 0 : hash[nums[i] - 1];
+    }
+    return ans;
+}
+
+//方法三：哈希总和统计
+int* smallerNumbersThanCurrent(int* nums, int numsSize, int* returnSize) {
+    int* ans = calloc(numsSize, sizeof(int));
+    *returnSize = numsSize;
+    //定义哈希表统计数字个数
+    int hash[101] = {0};
+    for (int i = 0; i < numsSize; i++)
+    {
+        hash[nums[i]]++;
+    }
+    //累加统计小于当前数字的总和
+    for (int i = 0; i < numsSize; i++)
+    {
+        for (int j = 0; j < nums[i]; j++)
+        {
+            ans[i] += hash[j];
+        }
     }
     return ans;
 }
